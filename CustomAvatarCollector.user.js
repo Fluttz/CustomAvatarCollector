@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.02
+// @version      1.03
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
