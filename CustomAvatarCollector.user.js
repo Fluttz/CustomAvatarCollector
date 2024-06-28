@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.0
+// @version      1.01
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -2080,7 +2080,11 @@ if (document.URL.includes("petlookup.phtml")){
     //Get pet name, color, species, petpet+petpetpet, owner
     let content = document.getElementsByClassName("content");
     content = content[0].getElementsByTagName("div");
-    content = content[1].innerText;
+    if (!content[1].innerText.includes("Loading")){
+        content = content[1].innerText;
+    } else {
+        content = content[0].innerText;
+    }
     let petName = content.substring(0,content.indexOf(" the "));
     content = content.substring(content.indexOf(" the ")+5);
     let combo = content;
@@ -2330,6 +2334,7 @@ if (document.URL.includes("/island/parrot.phtml")){
             "<br><br> <b>*</b> The avatar replacer only works for you, everybody else will still see your regular avatar."+
             "<br><br> <b>*</b> Your custom avatar progress is stored in your browser, so clearing browser data may cause you to lose it."+
             "<br><br> <b>*</b> Many avatars have slightly different solutions from sosu's original page, usually for practical reasons."+
+            "<br><br> <b>*</b> Not all of the avatars from sosu's original page were added, when in doubt check the Custom Avatar Menu."+
             "<br><br> <b>*</b> If an avatar requires a specific item in your inventory, that item needs to have been in your inventory the last time you opened it."+
             "<br><br> <b>*</b> Game avatars are awarded on the Games Room page of a game, based on your Monthly High Score."+
             "<br><br> <b>*</b> When refreshing for an avatar, let the page load fully before refreshing again or the script won't have a chance to run."+
