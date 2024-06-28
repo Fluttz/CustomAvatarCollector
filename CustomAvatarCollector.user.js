@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.03
+// @version      1.04
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -1813,15 +1813,16 @@ if (document.URL.includes("https://www.neopets.com/userlookup.phtml")){
         }
         let kad = document.getElementById("usertrophies").getElementsByTagName("div");
         for (let i = 0; i < kad.length; i++){
-            if (kad[i].innerText.includes("- Site Feature Trophies -")) {
+            if (kad[i].innerText.toLowerCase().includes("- site feature trophies -")) {
                 kad = kad[i+1];
                 break;
             }
         }
+
         if (kad.innerHTML.includes("games/kadoatery/trophy"))notifyAvatar(113);
         let nq = document.getElementById("usertrophies").getElementsByTagName("div");
         for (let i = 0; i < nq.length; i++){
-            if (nq[i].innerText.includes("- Game Trophies -")) {
+            if (nq[i].innerText.toLowerCase().includes("- game trophies -")) {
                 nq = nq[i+1];
                 break;
             }
@@ -2140,7 +2141,7 @@ if (document.URL.includes("petlookup.phtml")){
     //Get pet name, color, species, petpet+petpetpet, owner
     let content = document.getElementsByClassName("content");
     content = content[0].getElementsByTagName("div");
-    if (!content[1].innerText.includes("Loading")){
+    if (!content[1].innerText.toLowerCase().includes("loading")){
         content = content[1].innerText;
     } else {
         content = content[0].innerText;
@@ -2156,8 +2157,8 @@ if (document.URL.includes("petlookup.phtml")){
     let petpet = content.innerText.substring(content.innerText.indexOf("has a Petpet")+17);
     petpet = petpet.substring(petpet.indexOf(" the ")+5);
     let owner = document.getElementsByClassName("contentModuleContent")[1].innerHTML;
-    owner = owner.substring(owner.indexOf("Owner:")+6,owner.indexOf("<br>"));
-    if (owner.includes("(You!)")){
+    owner = owner.substring(owner.toLowerCase().indexOf("owner:")+6,owner.indexOf("<br>"));
+    if (owner.toLowerCase().includes("(you!)")){
         owner = true;
     } else {
         owner = false;
@@ -2169,110 +2170,110 @@ if (document.URL.includes("petlookup.phtml")){
             notifyAvatar(175);
         }
         let hunger = document.getElementsByClassName("activePetInfo")[0].innerText;
-        hunger = hunger.substring(hunger.indexOf("Hunger:")+8,hunger.indexOf("Age:")-1);
+        hunger = hunger.substring(hunger.toLowerCase().indexOf("hunger:")+8,hunger.toLowerCase().indexOf("age:")-1);
         let activeName = document.getElementsByClassName("sidebarHeader medText")[0].innerText;
         let jobs = document.getElementsByClassName("contentModuleContent")[1].innerText;
-        jobs = jobs.substring(jobs.indexOf("Jobs Completed:")+16,jobs.indexOf("Jobs Failed:")).trim();
+        jobs = jobs.substring(jobs.toLowerCase().indexOf("jobs completed:")+16,jobs.toLowerCase().indexOf("jobs failed:")).trim();
         //Own pet avatars, check for dying+active, jobs, puppyblew
         if (Number(jobs) >= 10) notifyAvatar(144);
         if ((hunger == "dying")&&(activeName == petName))notifyAvatar(101);
-        if (petpet.includes("Puppyblew"))notifyAvatar(96);
+        if (petpet.toLowerCase().includes("puppyblew"))notifyAvatar(96);
     }
 
     debugConsole("Pet detected as:\nColor: " + color + "\nSpecies: "+species+"\nPetpet: "+petpet);
-    switch (combo){
-        case "Blue Lutari":
+    switch (combo.toLowerCase()){
+        case "blue lutari":
             notifyAvatar(0);
             break;
-        case "Green Jubjub":
+        case "green jubjub":
             notifyAvatar(1);
             break;
-        case "Purple Ruki":
+        case "purple ruki":
             notifyAvatar(2);
             break;
-        case "Toy Nimmo":
+        case "toy nimmo":
             notifyAvatar(7);
             break;
-        case "Mutant Korbat":
+        case "mutant korbat":
             notifyAvatar(9);
             break;
-        case "Maraquan Korbat":
+        case "maraquan korbat":
             notifyAvatar(11);
             break;
-        case "Baby Elephante":
+        case "baby elephante":
             notifyAvatar(16);
             break;
-        case "Red Kau":
+        case "red kau":
             notifyAvatar(17);
             break;
-        case "Chocolate Aisha":
+        case "chocolate aisha":
             notifyAvatar(22);
             break;
-        case "Baby Grundo":
+        case "baby grundo":
             notifyAvatar(33);
             break;
-        case "Chocolate Mynci":
+        case "chocolate mynci":
             if (uniqueInInventory("Milkshake")>=4)notifyAvatar(75);
             break;
-        case "Blue Techo":
+        case "blue techo":
             if (uniqueInInventory("Techo")>=1)notifyAvatar(45);
             break;
     }
 
 
-    switch (color){
-        case "Red":
-        case "Blue":
-        case "Yellow":
-        case "Green":
+    switch (color.toLowerCase()){
+        case "red":
+        case "blue":
+        case "yellow":
+        case "green":
             break;
         default:
             //Painted pets
-            switch (species){
-                case "Chomby":
+            switch (species.toLowerCase()){
+                case "chomby":
                     notifyAvatar(24);
                     break;
-                case "Cybunny":
+                case "cybunny":
                     notifyAvatar(25);
                     break;
-                case "Gelert":
+                case "gelert":
                     notifyAvatar(26);
                     break;
-                case "Grarrl":
+                case "grarrl":
                     notifyAvatar(27);
                     break;
-                case "Korbat":
+                case "korbat":
                     notifyAvatar(32);
                     break;
             }
 
             break;
     }
-    if ((color == "Halloween")&&(petpet.includes("Halloween"))){
+    if ((color.toLowerCase() == "halloween")&&(petpet.toLowerCase().includes("halloween"))){
         if (uniqueInInventory("Pumpkin")>=6)notifyAvatar(87);
     }
 
-    if (species == "Cybunny"){
+    if (species.toLowerCase() == "cybunny"){
         if (uniqueInInventory("Leaf")>=1)notifyAvatar(73);
     }
 
-    if (petpet.includes("Blue Ona")){
+    if (petpet.toLowerCase().includes("blue ona")){
         notifyAvatar(5);
-    } else if (petpet.includes("Plushie Snarhook")){
+    } else if (petpet.toLowerCase().includes("plushie snarhook")){
         notifyAvatar(6);
-    } else if (petpet.includes("Slorg and its Blechy")){
+    } else if (petpet.toLowerCase().includes("slorg and its blechy")){
         notifyAvatar(23);
-    } else if (petpet.includes("Ghostkerchief")){
+    } else if (petpet.toLowerCase().includes("ghostkerchief")){
         notifyAvatar(28);
-    } else if (petpet.includes("Fire Alabriss")){
+    } else if (petpet.toLowerCase().includes("fire alabriss")){
         if(uniqueInInventory("Fire")>=8)notifyAvatar(41);
     }
 
-    if (petpet.includes("and its Rainblug")){
+    if (petpet.toLowerCase().includes("and its rainblug")){
         notifyAvatar(3);
-    } else if (petpet.includes("and its Vernax")){
+    } else if (petpet.toLowerCase().includes("and its vernax")){
         notifyAvatar(4);
-    } else if (petpet.includes("and its Cooty")){
+    } else if (petpet.toLowerCase().includes("and its cooty")){
         notifyAvatar(21);
     }
 
