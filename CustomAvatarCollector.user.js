@@ -2235,7 +2235,10 @@ if (document.URL.includes("/island/parrot.phtml")){
     //Attempt to load in Dead Chia avatar unlock if it's locked from images.neopets domain using GM_getValue
     if (unlockedAvatars[31] == 0){
         let ripChia = GM_getValue("caChia", "0");
-        if(ripChia == "1")unlockedAvatars[31]=1;
+        if(ripChia == "1"){
+            unlockAvatar(31);
+            unlockedAvatars[31]=1;
+        }
     }
     //Get unlocked and total avatar amounts
     let totalAvatars = 0;
