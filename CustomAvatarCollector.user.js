@@ -1201,7 +1201,7 @@ if (document.URL.includes("https://www.neopets.com/hero/showhero.phtml?hero=")){
         notifyAvatar(14);
     } else if (document.URL.includes("hero=21")){
         notifyAvatar(15);
-    } else if (document.URL.includes("hero=spacefaerie")){
+    } else if ((document.URL.includes("hero=spacefaerie"))||(document.URL = "https://www.neopets.com/hero/showhero.phtml?hero=2")){
         notifyAvatar(181);
     }
 
