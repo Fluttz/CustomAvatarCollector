@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.01
+// @version      1.02
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -2074,6 +2074,66 @@ if (document.URL.includes("https://www.neopets.com/games/nq2/nq2.phtml")){
     }
 }
 
+if (document.URL.includes("https://www.neopets.com/pool/index.phtml")){
+    //Rainbow Pool Brushes
+    let content = document.getElementsByClassName("content")[0];
+    content = content.getElementsByTagName("table")[0].innerHTML;
+    let brushes = 0;
+    while (content.includes("neopets.com/items/")){
+        brushes++;
+        content = content.substring(content.indexOf("neopets.com/items/")+20);
+    }
+    if ((uniqueInInventory("Paint Brush")>=4)||(brushes >= 4)){
+        let rolled = Math.floor(Math.random() * 300);
+        if (rolled < 6) {
+            let pb = Math.floor(Math.random() * 3);
+            switch (pb){
+                case 0:
+                    notifyAvatar(58);
+                    break;
+                case 1:
+                    notifyAvatar(59);
+                    break;
+                case 2:
+                    notifyAvatar(68);
+                    break;
+            }
+        } else if (rolled < 9) {
+            let pb = Math.floor(Math.random() * 6);
+            switch (pb){
+                case 0:
+                    notifyAvatar(60);
+                    break;
+                case 1:
+                    notifyAvatar(61);
+                    break;
+                case 2:
+                    notifyAvatar(62);
+                    break;
+                case 2:
+                    notifyAvatar(63);
+                    break;
+                case 2:
+                    notifyAvatar(64);
+                    break;
+                case 2:
+                    notifyAvatar(67);
+                    break;
+            }
+        } else if (rolled < 10) {
+            let pb = Math.floor(Math.random() * 2);
+            switch (pb){
+                case 0:
+                    notifyAvatar(65);
+                    break;
+                case 1:
+                    notifyAvatar(66);
+                    break;
+            }
+        }
+    }
+}
+
 //
 if (document.URL.includes("petlookup.phtml")){
     //On a petpage
@@ -2401,55 +2461,6 @@ if (document.URL.includes("inventory.phtml")){
     }
     if (numberInInventory("Mote")>=9){
         if (roll(5))notifyAvatar(85);
-    }
-    if (uniqueInInventory("Paint Brush")>=4){
-        let rolled = Math.floor(Math.random() * 300);
-        if (rolled < 6) {
-            let pb = Math.floor(Math.random() * 3);
-            switch (pb){
-                case 0:
-                    notifyAvatar(58);
-                    break;
-                case 1:
-                    notifyAvatar(59);
-                    break;
-                case 2:
-                    notifyAvatar(68);
-                    break;
-            }
-        } else if (rolled < 9) {
-            let pb = Math.floor(Math.random() * 6);
-            switch (pb){
-                case 0:
-                    notifyAvatar(60);
-                    break;
-                case 1:
-                    notifyAvatar(61);
-                    break;
-                case 2:
-                    notifyAvatar(62);
-                    break;
-                case 2:
-                    notifyAvatar(63);
-                    break;
-                case 2:
-                    notifyAvatar(64);
-                    break;
-                case 2:
-                    notifyAvatar(67);
-                    break;
-            }
-        } else if (rolled < 10) {
-            let pb = Math.floor(Math.random() * 2);
-            switch (pb){
-                case 0:
-                    notifyAvatar(65);
-                    break;
-                case 1:
-                    notifyAvatar(66);
-                    break;
-            }
-        }
     }
 
     let grossCount = 0;
