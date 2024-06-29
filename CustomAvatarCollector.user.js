@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.05
+// @version      1.06
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -113,7 +113,7 @@ const customAvatars = {
     "5" : {
         "name" : "Blue Ona",
         "img" : "https://i.imgur.com/JTpaPyW.gif",
-        "req" : "Visit a Neopet with a Blue Ona attached.",
+        "req" : "Visit a Neopet with an Ona attached.",
         "secret" : ""
     },
     "6" : {
@@ -2257,7 +2257,7 @@ if (document.URL.includes("petlookup.phtml")){
         if (uniqueInInventory("Leaf")>=1)notifyAvatar(73);
     }
 
-    if (petpet.toLowerCase().includes("blue ona")){
+    if (petpet.toLowerCase().includes("ona")){
         notifyAvatar(5);
     } else if (petpet.toLowerCase().includes("plushie snarhook")){
         notifyAvatar(6);
