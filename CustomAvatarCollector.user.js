@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.06
+// @version      1.07
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -17,21 +17,21 @@
 // @match        https://www.neopets.com/jelly/greenjelly.phtml
 // @match        https://www.neopets.com/inventory.phtml
 // @match        https://www.neopets.com/home/*
-// @match        https://www.neopets.com/medieval/index.phtml
+// @match        https://www.neopets.com/medieval/*
 // @match        https://www.neopets.com/winter/neggery.phtml
 // @match        https://www.neopets.com/prehistoric/concerthall2.phtml
-// @match        https://www.neopets.com/games/neodeck/index.phtml*
-// @match        https://www.neopets.com/pool/index.phtml
+// @match        https://www.neopets.com/games/neodeck/*
+// @match        https://www.neopets.com/pool/*
 // @match        https://www.neopets.com/stamps.phtml?type=progress
 // @match        https://www.neopets.com/closet.phtml
 // @match        https://www.neopets.com/mip/comic.phtml?chapter=2
 // @match        https://www.neopets.com/auctions.phtml*
-// @match        https://www.neopets.com/water/index.phtml
+// @match        https://www.neopets.com/water/*
 // @match        https://www.neopets.com/books_read.phtml?pet_name=*
 // @match        https://www.neopets.com/moon/books_read.phtml?pet_name=*
 // @match        https://www.neopets.com/haggle.phtml
 // @match        https://www.neopets.com/medieval/guessmarrow.phtml*
-// @match        https://www.neopets.com/halloween/strtest/index.phtml
+// @match        https://www.neopets.com/halloween/strtest/*
 // @match        https://www.neopets.com/shenkuu/lunar/results.phtml
 // @match        https://www.neopets.com/island/kitchen.phtml
 // @match        https://www.neopets.com/halloween/esophagor.phtml
@@ -46,7 +46,7 @@
 // @match        https://www.neopets.com/moon/meteor.phtml
 // @match        https://www.neopets.com/pirates/anchormanagement.phtml
 // @match        https://www.neopets.com/process_lab2.phtml
-// @match        https://www.neopets.com/desert/fruit/index.phtml
+// @match        https://www.neopets.com/desert/fruit/*
 // @match        https://www.neopets.com/takedonation_new.phtml*
 // @match        https://www.neopets.com/halloween/gravedanger/
 // @match        https://www.neopets.com/thriftshoppe/take_donation.phtml
@@ -59,7 +59,7 @@
 // @match        https://www.neopets.com/halloween/bagatelle.phtml
 // @match        https://www.neopets.com/userlookup.phtml*
 // @match        https://www.neopets.com/neofriends.phtml*
-// @match        https://www.neopets.com/tropical/index.phtml
+// @match        https://www.neopets.com/tropical/*
 // @match        https://www.neopets.com/settings/neoboards/
 // @match        https://www.neopets.com/aota/
 // @match        https://www.neopets.com/worlds/kiko/glass_boat.phtml
@@ -71,6 +71,7 @@
 // @match        https://www.neopets.com/guilds/guild_board.phtml?id=*
 // @match        https://www.neopets.com/art/storytell.phtml*
 // @match        https://www.neopets.com/contributions_poems.phtml*
+// @match        https://www.neopets.com/gallery/
 // @match        https://www.neopets.com/gallery/index.phtml
 // @match        https://www.neopets.com/gallery/index.phtml?view=all
 // @match        https://www.neopets.com/neoboards/topic.phtml*
@@ -1246,7 +1247,7 @@ if (document.URL.includes("https://www.neopets.com/home/")){
     notifyAvatar(35);
 }
 
-if (document.URL.includes("https://www.neopets.com/medieval/index.phtml")){
+if ((document.URL == "https://www.neopets.com/medieval/index.phtml")||(document.URL == "https://www.neopets.com/medieval/")){
     //Ixi Raider
     if (uniqueInInventory("Ixi")>=1)notifyAvatar(36);
 }
@@ -1284,7 +1285,7 @@ if (document.URL.includes("https://www.neopets.com/prehistoric/concerthall2.phtm
     }
 }
 
-if (document.URL.includes("https://www.neopets.com/games/neodeck/index.phtml")){
+if (document.URL.includes("https://www.neopets.com/games/neodeck/")){
     //Play!
     let content = document.getElementsByClassName("content");
     content = content[0].innerText;
@@ -1352,7 +1353,7 @@ if (document.URL.includes("https://www.neopets.com/auctions.phtml")){
     }
 }
 
-if (document.URL.includes("https://www.neopets.com/water/index.phtml")){
+if ((document.URL=="https://www.neopets.com/water/index.phtml")||(document.URL=="https://www.neopets.com/water/")){
     //Fall Underwater?!
     if (uniqueInInventory("Pumpkin")>=8)notifyAvatar(88);
 }
@@ -1410,7 +1411,7 @@ if (document.URL.includes("https://www.neopets.com/medieval/guessmarrow.phtml"))
     }
 }
 
-if (document.URL.includes("https://www.neopets.com/halloween/strtest/index.phtml")){
+if (document.URL.includes("https://www.neopets.com/halloween/strtest/")){
     //Test Your Strength
     let content = document.getElementById("prizeMessage").innerText;
     while (!content.includes("You scored")){
@@ -1700,7 +1701,7 @@ if (document.URL.includes("https://www.neopets.com/process_lab2.phtml")){
     }
 }
 
-if (document.URL.includes("https://www.neopets.com/desert/fruit/index.phtml")){
+if (document.URL.includes("https://www.neopets.com/desert/fruit/")){
     //Fruit Machine
     let content = document.getElementById("fruitResult");
     debugConsole(content);
@@ -1837,7 +1838,7 @@ if (document.URL.includes("https://www.neopets.com/neofriends.phtml")){
     if(roll(100))notifyAvatar(166);
 }
 
-if (document.URL.includes("https://www.neopets.com/tropical/index.phtml")){
+if ((document.URL=="https://www.neopets.com/tropical/index.phtml")||(document.URL=="https://www.neopets.com/tropical/")){
     //Lutari Island
     if(roll(49))notifyAvatar(177);
 }
@@ -2011,7 +2012,7 @@ if (document.URL.includes("https://www.neopets.com/contributions_poems.phtml")){
     }
 }
 
-if (document.URL.includes("https://www.neopets.com/gallery/index.phtml")){
+if (document.URL.includes("https://www.neopets.com/gallery/")){
     //Bori Miner
     let content = document.getElementById("gallery_form");
     content = content.innerHTML;
@@ -2075,7 +2076,7 @@ if (document.URL.includes("https://www.neopets.com/games/nq2/nq2.phtml")){
     }
 }
 
-if (document.URL.includes("https://www.neopets.com/pool/index.phtml")){
+if ((document.URL=="https://www.neopets.com/pool/index.phtml")||(document.URL=="https://www.neopets.com/pool/")){
     //Rainbow Pool Brushes
     let content = document.getElementsByClassName("content")[0];
     content = content.getElementsByTagName("table")[0].innerHTML;
@@ -2131,6 +2132,8 @@ if (document.URL.includes("https://www.neopets.com/pool/index.phtml")){
                     notifyAvatar(66);
                     break;
             }
+        } else {
+            debugConsole(rolled);
         }
     }
 }
@@ -2530,7 +2533,7 @@ function notifyAvatar(avatarNum){
         let content = document.getElementsByClassName("search-iteminfo");
         div.innerHTML = div.innerHTML + "<br>";
         content[0].before(div);
-    } else if (document.URL.includes("https://www.neopets.com/home/index.phtml")){
+    } else if (document.URL.includes("https://www.neopets.com/home/")){
         let content = document.getElementsByClassName("inner-body");
         content[0].before(div);
     } else if (document.URL.includes("https://www.neopets.com/settings/neoboards/")){
