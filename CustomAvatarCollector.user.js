@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.04
+// @version      1.05
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -16,7 +16,7 @@
 // @match        https://images.neopets.com/images/dead_chia.jpg
 // @match        https://www.neopets.com/jelly/greenjelly.phtml
 // @match        https://www.neopets.com/inventory.phtml
-// @match        https://www.neopets.com/home/index.phtml
+// @match        https://www.neopets.com/home/*
 // @match        https://www.neopets.com/medieval/index.phtml
 // @match        https://www.neopets.com/winter/neggery.phtml
 // @match        https://www.neopets.com/prehistoric/concerthall2.phtml
@@ -1224,13 +1224,13 @@ if (document.URL.includes("https://www.neopets.com/jelly/greenjelly.phtml")){
 
 if (document.URL.includes("https://www.neopets.com/search.phtml?selected_type=object&string=")){
     //Items
-    if (document.URL.replace("%2B","+").includes("string=Farlax+V")){
+    if (document.URL.replaceAll("%2B","+").includes("string=Farlax+V")){
         notifyAvatar(29);
-    } else if (document.URL.replace("%2B","+").includes("string=Morris+Gnome")){
+    } else if (document.URL.replaceAll("%2B","+").includes("string=Morris+Gnome")){
         notifyAvatar(30);
-    } else if (document.URL.replace("%2B","+").includes("string=Dark+Battle+Duck")){
+    } else if (document.URL.replaceAll("%2B","+").includes("string=Dark+Battle+Duck")){
         notifyAvatar(77);
-    } else if (document.URL.replace("%2B","+").includes("string=Battle+Duck")){
+    } else if (document.URL.replaceAll("%2B","+").includes("string=Battle+Duck")){
         if (numberInInventory("Duck")>=1)notifyAvatar(78);
     }
 }
@@ -1241,7 +1241,7 @@ if (document.URL.includes("https://images.neopets.com/images/dead_chia.jpg")){
     chiaAvatar(31);
 }
 
-if (document.URL.includes("https://www.neopets.com/home/index.phtml")){
+if (document.URL.includes("https://www.neopets.com/home/")){
     //Usuki Princess
     notifyAvatar(35);
 }
@@ -1492,7 +1492,7 @@ if (document.URL.includes("https://www.neopets.com/stockmarket.phtml?type=portfo
     let countCells = document.querySelectorAll('td:nth-child(6)');
     for (let i = 0; i<countCells.length;i++){
         if (!(countCells[i].innerText.includes("%")||countCells[i].innerText.includes("Qty")||countCells[i].innerText.trim()=="")){
-            let thisStocks = Number(countCells[i].innerText.replace(",",""));
+            let thisStocks = Number(countCells[i].innerText.replaceAll(",",""));
             totalStocks = totalStocks + thisStocks;
             if ((thisStocks > 30000)&&companyAvatar){
                 //Broker Chia Nigel
@@ -1528,7 +1528,7 @@ if (document.URL.includes("https://www.neopets.com/pirates/foodclub.phtml?type=c
 if (document.URL.includes("https://www.neopets.com/games/game.phtml?game_id=")){
     //Game avatars
     let gameID = Number(document.URL.substring(49));
-    let gameScore = Number(document.getElementsByClassName("hiscore-month")[0].innerText.substring(12).replace("N/A",0).replace(",",""));
+    let gameScore = Number(document.getElementsByClassName("hiscore-month")[0].innerText.substring(12).replace("N/A",0).replaceAll(",",""));
     switch (gameID){
         case 536:
             if (gameScore >= 1700)notifyAvatar(132);
@@ -1771,7 +1771,7 @@ if (document.URL.includes("https://www.neopets.com/bank.phtml")){
     let content = document.getElementById("txtDailyInterest");
     content = content.innerText;
     if (content.includes("Daily Interest:")){
-        content = content.substring(16).replace(",","").replace(" NP","");
+        content = content.substring(16).replaceAll(",","").replace(" NP","");
         if(content>=100000)notifyAvatar(165);
     }
 }
@@ -2431,7 +2431,7 @@ if (document.URL.includes("inventory.phtml")){
                 if (itemInd>-1){
                     inventoryCount[itemInd] = Number(inventoryCount[itemInd]) + Number(quantity);
                 } else {
-                    inventoryList.push(itemName.replace(",",";"));
+                    inventoryList.push(itemName.replaceAll(",",";"));
                     inventoryCount.push(Number(quantity));
                 }
             }
@@ -2590,7 +2590,7 @@ function getInventory(){
     let inventoryMatrix = [[],[]];
     let inventoryList = window.localStorage.getItem('caInventoryList').split(",");
     for (let i = 0; i < inventoryList.length; i++){
-        inventoryList[i] = inventoryList[i].replace(";",",");
+        inventoryList[i] = inventoryList[i].replaceAll(";",",");
     }
     inventoryMatrix[0] = inventoryList;
     inventoryMatrix[1] = window.localStorage.getItem('caInventoryCount').split(",");
