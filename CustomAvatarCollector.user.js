@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.07
+// @version      1.08
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -402,7 +402,7 @@ const customAvatars = {
     "53" : {
         "name" : "The 2 Gallon Hatz",
         "img" : "https://i.imgur.com/7ehONqm.gif",
-        "req" : "See a The 2 Gallon Hatz concert in the Tyrannian Concert Hall.",
+        "req" : "See a 2 Gallon Hatz concert in the Tyrannian Concert Hall.",
         "secret" : ""
     },
     "54" : {
@@ -1275,7 +1275,7 @@ if (document.URL.includes("https://www.neopets.com/prehistoric/concerthall2.phtm
         notifyAvatar(51);
     } else if (content.includes("Wock Til You Drop")){
         notifyAvatar(52);
-    } else if (content.includes("The 2 Gallon Hatz")){
+    } else if (content.includes("2 Gallon Hatz")){
         notifyAvatar(53);
     } else if (content.includes("Moehawk")){
         notifyAvatar(54);
@@ -1408,6 +1408,20 @@ if (document.URL.includes("https://www.neopets.com/medieval/guessmarrow.phtml"))
     content = content[0].innerText;
     if (content.includes("RIGHT!")){
         notifyAvatar(109);
+    } else if (content.includes("WRONG!")){
+        let attempts = getSave(109);
+        if (attempts == 0){
+            setSave(109,16);
+        } else if (attempts > 2){
+            attempts = attempts - 1;
+            setSave(109,attempts);
+        } else if (attempts == 2) {
+            setSave(109,1);
+            content = document.getElementsByClassName("content")[0];
+            content.innerHTML = content.innerHTML.replace("Shame really, because I had all these super cool rare items for you if you had won... oh well!",
+                                                         "<br><br>But you know what, since you've been doing your best at guessing, here's a custom avatar. Just don't tell the others, okay? ;)");
+            notifyAvatar(109);
+        }
     }
 }
 
@@ -2699,4 +2713,28 @@ function selectAvatar(avatarNum){
 
 function debugConsole(text){
     if (debugMode) console.log(text);
+}
+
+function getSave(num){
+    let saves = window.localStorage.getItem('caSaves');
+    if (saves == null){
+        return 0;
+    } else {
+        saves = saves.split(",");
+    }
+    return saves[num];
+}
+
+function setSave(num,value){
+    let saves = window.localStorage.getItem('caSaves');
+    if (saves == null){
+        saves = [];
+        for (let i = 0;i<avatarMax;i++){
+            saves.push(0);
+        }
+    } else {
+        saves = saves.split(",");
+    }
+    saves[num] = value;
+    window.localStorage.setItem('caSaves',saves);
 }
