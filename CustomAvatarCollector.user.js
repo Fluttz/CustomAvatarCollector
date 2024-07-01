@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.08
+// @version      1.09
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -1636,31 +1636,35 @@ if (document.URL.includes("https://www.neopets.com/dome/arena.phtml")){
             enemyHP=hpScr.substring(HPid+14,HPid+30);
             enemyHP=enemyHP.substring(0,enemyHP.indexOf("'"));
         }
-        switch (enemyName){
-            case "Kastraliss":
-                if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==6400))notifyAvatar(140);
-                break;
-            case "Tax Beast":
-                if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==144))notifyAvatar(142);
-                break;
-            case "Mr. Chuckles":
-                if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==17))notifyAvatar(151);
-                break;
-            case "Boochi":
-                if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==24))notifyAvatar(152);
-                break;
-            case "Plumbeard":
-                if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==825))notifyAvatar(153);
-                break;
-            case "The Snowager":
-                if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==40600))notifyAvatar(154);
-                break;
-            case "The Drenched":
-                if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==33000))notifyAvatar(155);
-                break;
-            case "Ryshu the Nimmo":
-                if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==1000))notifyAvatar(44);
-                break;
+        let curr1p = document.getElementById("p1hp").innerText;
+        let curr2p = document.getElementById("p2hp").innerText;
+        if ((curr1p > 0)&&(curr2p < 1)){
+            switch (enemyName){
+                case "Kastraliss":
+                    if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==6400))notifyAvatar(140);
+                    break;
+                case "Tax Beast":
+                    if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==144))notifyAvatar(142);
+                    break;
+                case "Mr. Chuckles":
+                    if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==17))notifyAvatar(151);
+                    break;
+                case "Boochi":
+                    if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==24))notifyAvatar(152);
+                    break;
+                case "Plumbeard":
+                    if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==825))notifyAvatar(153);
+                    break;
+                case "The Snowager":
+                    if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==40600))notifyAvatar(154);
+                    break;
+                case "The Drenched":
+                    if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==33000))notifyAvatar(155);
+                    break;
+                case "Ryshu the Nimmo":
+                    if ((rewardsBox.innerText.includes("For besting your opponent"))&&(enemyHP==1000))notifyAvatar(44);
+                    break;
+            }
         }
     });
 
