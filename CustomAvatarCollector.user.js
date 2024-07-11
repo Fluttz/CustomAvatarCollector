@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.09
+// @version      1.10
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -1488,8 +1488,8 @@ if (document.URL.includes("https://www.neopets.com/wishing.phtml")){
             let wishUser = countCells[i].innerText;
             if (wishUser.includes("\n")) {
                 break;
-            } else {
-                if (wishUser == userName) notifyAvatar(122);
+            } else if (wishUser == userName) {
+                notifyAvatar(122);
                 break;
             }
         }
