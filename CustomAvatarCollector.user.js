@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.10
+// @version      1.11
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -76,6 +76,7 @@
 // @match        https://www.neopets.com/gallery/index.phtml?view=all
 // @match        https://www.neopets.com/neoboards/topic.phtml*
 // @match        https://www.neopets.com/games/nq2/nq2.phtml*
+// @match        https://www.neopets.com/altador/colosseum/index.phtml
 // @grant        GM_setValue
 // @grant        GM_getValue
 // ==/UserScript==
@@ -887,11 +888,36 @@ const customAvatars = {
         "req" : "Send a score of 1500+ in Jubble Bubble.",
         "secret" : "Send a score of ? in <a href=\"/games/game.phtml?game_id=619\">Jubble Bubble.</a>"
     },
-
-
-
-
-
+    "146" : {
+        "name" : "All Star",
+        "img" : "https://i.imgur.com/aZox6Ot.gif",
+        "req" : "Reach All-Star during the Altador Cup.",
+        "secret" : ""
+    },
+    "147" : {
+        "name" : "AC - Yooyuball",
+        "img" : "https://i.imgur.com/8mEEeBC.gif",
+        "req" : "Score 10 or more goals in a game of Yooyuball.",
+        "secret" : "Score ? or more goals in a game of Yooyuball."
+    },
+    "148" : {
+        "name" : "AC - SOSD",
+        "img" : "https://i.imgur.com/vJsCtKA.gif",
+        "req" : "Play 300 or more games of Shootout Showdown.",
+        "secret" : "Play ? or more games of Shootout Showdown."
+    },
+    "149" : {
+        "name" : "AC - Slushie Slinger",
+        "img" : "https://i.imgur.com/8Y9divw.gif",
+        "req" : "Send a score of 400 in Slushie Slinger.",
+        "secret" : "Send a score of ? in Slushie Slinger."
+    },
+    "150" : {
+        "name" : "AC - Make Some Noise",
+        "img" : "https://i.imgur.com/ZyBeJxB.gif",
+        "req" : "Play 50 or more games of Make Some Noise.",
+        "secret" : "Play ? or more games of Make Some Noise."
+    },
     "151" : {
         "name" : "Mr. Chuckles - HAHAHA",
         "img" : "https://i.imgur.com/LO54N0E.gif",
@@ -1989,9 +2015,9 @@ if (document.URL.includes("https://www.neopets.com/guilds/guild_board.phtml?id="
               width: 50px;
               opacity:1;
               margin-bottom: -13px;
-              transition: 0.5s;
         }
         .customAuthorIcon:hover{
+              transition: 0.5s;
               background: url(`+ogAv+`);
         }
         `;
@@ -2076,9 +2102,9 @@ if (document.URL.includes("https://www.neopets.com/neoboards/topic.phtml")){
               height: 50px;
               width: 50px;
               opacity:1;
-              transition: 0.5s;
         }
         .customAuthorIcon:hover{
+              transition: 0.5s;
               background: url(`+ogAv+`);
         }
         `;
@@ -2154,6 +2180,28 @@ if ((document.URL=="https://www.neopets.com/pool/index.phtml")||(document.URL=="
             debugConsole(rolled);
         }
     }
+}
+
+if (document.URL.includes("https://www.neopets.com/altador/colosseum/index.phtml")){
+    //Altador Cup
+    let rank = document.getElementsByClassName("ac-user-rank")[0];
+    let boxes = document.getElementsByClassName("ac-rank-scores");
+    let acGoals = boxes[0].children[2].innerText;
+    let sluScore = boxes[1].children[4].innerText;
+    let msnCount = boxes[1].children[7].innerText;
+    let ssCount = boxes[1].children[12].innerText;
+
+    debugConsole(rank.innerText);
+    debugConsole(acGoals);
+    debugConsole(sluScore);
+    debugConsole(msnCount);
+    debugConsole(ssCount);
+
+    if (rank.innerText.toUpperCase().includes("ALL-STAR")) notifyAvatar(146);
+    if (acGoals >= 10) notifyAvatar(147);
+    if (sluScore >= 400) notifyAvatar(149);
+    if (msnCount >= 50) notifyAvatar(150);
+    if (ssCount >= 300) notifyAvatar(148);
 }
 
 //
@@ -2560,6 +2608,9 @@ function notifyAvatar(avatarNum){
     } else if (document.URL.includes("https://www.neopets.com/questlog/")){
         let content = document.getElementsByClassName("questlog-info");
         content[0].after(div);
+    } else if (document.URL.includes("https://www.neopets.com/altador/colosseum/index.phtml")){
+        let content = document.getElementsByClassName("h5-altadorcup");
+        content[0].before(div);
     } else {
         //Otherwise default to standard locations in old and new layout
         let content = document.getElementsByClassName("content");
