@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.12
+// @version      1.13
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -2198,10 +2198,10 @@ if (document.URL.includes("https://www.neopets.com/altador/colosseum/index.phtml
     debugConsole(ssCount);
 
     if (rank.innerText.toUpperCase().includes("ALL-STAR")) notifyAvatar(146);
-    if (acGoals >= 10) notifyAvatar(147);
-    if (sluScore >= 400) notifyAvatar(149);
-    if (msnCount >= 50) notifyAvatar(150);
-    if (ssCount >= 300) notifyAvatar(148);
+    if (acGoals.replaceAll(",","") >= 10) notifyAvatar(147);
+    if (sluScore.replaceAll(",","") >= 400) notifyAvatar(149);
+    if (msnCount.replaceAll(",","") >= 50) notifyAvatar(150);
+    if (ssCount.replaceAll(",","") >= 300) notifyAvatar(148);
 }
 
 //
