@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.11
+// @version      1.12
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -1764,7 +1764,7 @@ if (document.URL.includes("https://www.neopets.com/desert/fruit/")){
     if(content.innerText.includes("Congratulations!"))notifyAvatar(114);
 }
 
-if (document.URL.includes("https://www.neopets.com/takedonation_new.phtml")){
+if ((document.URL.includes("https://www.neopets.com/takedonation_new.phtml"))&&(document.URL.includes("location_id=0"))){
     //Money Tree
     let content = document.getElementById("container__2020");
     content = content.innerText;
@@ -1987,7 +1987,7 @@ if (document.URL.includes("https://www.neopets.com/guilds/guild_board.phtml?id="
     //Guild replacer
     let myAv = window.localStorage.getItem('caSelected');
     let ogAv = "";
-    if (myAv != null){
+    if ((myAv != null)&&(myAv != -1)){
         let userName = document.getElementsByClassName("user medText")[0];
         userName = userName.getElementsByTagName("a")[0].innerText;
         //Get your username
@@ -2074,7 +2074,7 @@ if (document.URL.includes("https://www.neopets.com/neoboards/topic.phtml")){
     //Neoboard
     let myAv = window.localStorage.getItem('caSelected');
     let ogAv = "";
-    if (myAv != null){
+    if ((myAv != null)&&(myAv != -1)){
         let content = document.getElementsByClassName("postAuthor");
         let userName = document.getElementsByClassName("text-muted")[0].innerText.trim();
         for (let i = 0; i<content.length; i++){
