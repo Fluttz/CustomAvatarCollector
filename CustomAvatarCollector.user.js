@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Custom Avatar Collector
-// @version      1.13
+// @version      1.14
 // @description  =====================================================IMPORTANT=========>>>>>>Visit https://www.neopets.com/island/parrot.phtml to get started!
 // @author       Flutterz; avatars by sosu (Neopets username: sosunub)
 // @icon         https://i.imgur.com/rTLTKNL.png
@@ -76,7 +76,7 @@
 // @match        https://www.neopets.com/gallery/index.phtml?view=all
 // @match        https://www.neopets.com/neoboards/topic.phtml*
 // @match        https://www.neopets.com/games/nq2/nq2.phtml*
-// @match        https://www.neopets.com/altador/colosseum/index.phtml
+// @match        https://www.neopets.com/altador/colosseum/*
 // @grant        GM_setValue
 // @grant        GM_getValue
 // ==/UserScript==
@@ -1182,7 +1182,7 @@ const grossFoods = ["Delightful Petpetpet Medley","Mouldy Left-Overs","Rotten Om
 const avatarMax = 1000;
 const agreementVer = 1;
 //Debug mode makes a lot of stuff output to console
-const debugMode = false;
+const debugMode = true;
 
 if (document.URL.includes("https://www.neopets.com/evil/showcreature.phtml?villain=26")){
     //Razul
@@ -1305,7 +1305,7 @@ if (document.URL.includes("https://www.neopets.com/prehistoric/concerthall2.phtm
         notifyAvatar(53);
     } else if (content.includes("Moehawk")){
         notifyAvatar(54);
-    } else if (content.includes("Sticks N' Stones")){
+    } else if (content.includes("Sticks N Stones")){
         let d = new Date(new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"}));
         if (d.getDate()==10) notifyAvatar(55);
     }
